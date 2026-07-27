@@ -18,7 +18,7 @@
 
 ## Week 8 — Reproduction & solution planning
 
-**Reproduction commit link:** Pending creation of the reproduction-documentation commit.
+**Reproduction commit link:** https://github.com/jtan21at/pathreview/commit/884386a26d10d1017a3c0c6fa64ba0d3d6e3e217
 
 **Reproduction summary:** I ran `.venv/Scripts/python -m pytest tests/unit/test_relevance_scorer.py -q` before changing the fixture. The `test_query_with_partial_overlap` case failed because the query and chunk shared all four tokens, so `RelevanceScorer.score()` correctly returned `1.0` while the test asserted that the score must be below `0.9`.
 
