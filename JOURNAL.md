@@ -15,3 +15,15 @@
 **Setup confirmation:** [ ] App runs locally at localhost:5173
 
 **Cohort ledger:** [ ] Issue added to cohort ledger
+
+## Week 8 — Reproduction & solution planning
+
+**Reproduction commit link:** Pending creation of the reproduction-documentation commit.
+
+**Reproduction summary:** I ran `.venv/Scripts/python -m pytest tests/unit/test_relevance_scorer.py -q` before changing the fixture. The `test_query_with_partial_overlap` case failed because the query and chunk shared all four tokens, so `RelevanceScorer.score()` correctly returned `1.0` while the test asserted that the score must be below `0.9`.
+
+**PLAN.md link:** https://github.com/jtan21at/pathreview/blob/test/157-relevance-partial-overlap/PLAN.md
+
+**Walkthrough video (recommended):** Not recorded.
+
+**Blockers or open questions:** Docker cannot currently be accessed from this Windows session because access to the Docker named pipe is denied; it is not required for the isolated relevance-scorer reproduction. GitHub CLI is not installed, and the previous push attempt waited for interactive GitHub authentication.
