@@ -42,7 +42,7 @@
 
 ### Check-in 2 (end of week)
 
-**PR link:** Pending creation. Open a PR from `test/157-relevance-partial-overlap` to `main` and replace this entry with its URL.
+**PR link:** https://github.com/jtan21at/pathreview/pull/1
 
 **Branch:** `test/157-relevance-partial-overlap`
 
