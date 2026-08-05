@@ -55,3 +55,32 @@
 `make lint` reports 182 repository-wide Ruff findings in unrelated files; `make test-unit` reports 52 unrelated failures and 376 passes. The #157 test module passes its targeted run, and the touched test file passes Ruff and Black checks. `mypy rag/evaluator/relevance_scorer.py` also passes.
 
 **Draft PR feedback received from:** none
+
+## Week 10 — Iteration & reflection
+
+### Reviewer feedback
+
+**Feedback received:** [ ] Yes  [x] No — no review arrived by the end of the week
+
+**Summary of feedback:** No reviewer or maintainer comments were present on PR #1 when I checked the PR discussion and review history.
+
+**How you responded:** No response or code change was required.
+
+---
+
+### Reflection
+
+**What was harder than you expected?**
+The code change itself was small, but establishing a trustworthy contribution record took more work than expected. I had to distinguish the #157 fixture failure from the scorer implementation, reproduce the exact `1.0` result, write a plan that matched the actual token-overlap calculation, and document repository-wide failures without treating them as part of my issue. Local environment setup was also harder than expected because Docker's Windows named pipe denied access even after locating the Docker binaries.
+
+**What did you learn about working in a large codebase?**
+I learned that a failing test is not automatically evidence that production code is wrong. Reading `RelevanceScorer.score()` and comparing the query token set with the chunk token set showed that the scorer was behaving correctly and the fixture was invalid. In a shared codebase, a focused change, targeted validation, and clear documentation of unrelated test or lint failures are more valuable than changing nearby code just to make a broad command look green.
+
+**How did AI tools help — and where did they fall short?**
+AI tools helped me navigate the repository, trace the test to `RelevanceScorer.score()`, identify the four-token overlap, draft the plan structure, and keep the journal aligned with the course templates. They were less useful for environment state that required direct evidence: I still had to run the test, inspect the score, install dependencies, verify the PR state, and interpret Docker's access-denied error. AI could suggest an approach, but command output and the repository's own conventions determined what was correct.
+
+**What would you do differently if you started over?**
+I would choose and claim the issue earlier, then immediately run both the target test and broad quality commands before making any change. That would make the baseline of pre-existing failures clearer and avoid late setup work. I would also configure GitHub authentication and Docker permissions before beginning the course workflow, so pushing commits, opening the PR, and validating the full application would not be delayed by infrastructure issues.
+
+**What are you most proud of from this module?**
+I am most proud of keeping the fix intentionally narrow. Rather than modifying the relevance scoring algorithm to satisfy a bad test, I demonstrated that the algorithm correctly returned `1.0` for full overlap, changed the fixture to produce a genuine `0.5` partial-overlap score, and left the project behavior unchanged.
